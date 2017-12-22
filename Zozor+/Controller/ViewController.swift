@@ -6,6 +6,7 @@
 //  Copyright © 2016 Ambroise Collon. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class ViewController: UIViewController {
@@ -59,9 +60,9 @@ class ViewController: UIViewController {
     }
     
     func isExpressionCorrect() -> Bool {
-        if let stringNumber = stringNumbers.last {
+        if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
-                if stringNumbers.count == 1 {
+                if calculator.stringNumbers.count == 1 {
                     let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
@@ -78,13 +79,13 @@ class ViewController: UIViewController {
 
     func updateDisplay() {
         var text = ""
-        for (i, calculator.stringNumbers) in calculator.stringNumbers.enumerated() {
+        for (i, stringNumber) in calculator.stringNumbers.enumerated() {
             // Add operator
             if i > 0 {
                 text += calculator.operators[i]
             }
             // Add number
-            text += calculator.stringNumber
+            text += stringNumber
         }
         textView.text = text
     }
