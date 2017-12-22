@@ -78,6 +78,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7173F1671FED74A000724C4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7105830D1FED6EC600CF669E /* Calculator.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7173F1681FED74AA00724C4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C926DADE1D7581BB00477020 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7173F1691FED74BB00724C4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C926DAE01D7581BB00477020 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C926DAD01D7581BB00477020 = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +127,12 @@
 			isa = PBXGroup;
 			children = (
 				C926DADC1D7581BB00477020 /* AppDelegate.swift */,
-				C926DADE1D7581BB00477020 /* ViewController.swift */,
-				C926DAE01D7581BB00477020 /* Main.storyboard */,
+				7173F1671FED74A000724C4E /* Model */,
+				7173F1691FED74BB00724C4E /* View */,
+				7173F1681FED74AA00724C4E /* Controller */,
 				C926DAE31D7581BB00477020 /* Assets.xcassets */,
 				C926DAE51D7581BB00477020 /* LaunchScreen.storyboard */,
 				C926DAE81D7581BB00477020 /* Info.plist */,
-				7105830D1FED6EC600CF669E /* Calculator.swift */,
 			);
 			name = CountOnMe;
 			path = "Zozor+";
