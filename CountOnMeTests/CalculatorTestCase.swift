@@ -45,10 +45,10 @@ class CalculatorTestCase: XCTestCase {
     
     func testGivenCalculRequest_WhenEqualIsPush_StringContainCalculationTotal() {
         addString("3")
-        calculator.operators.append("-")
+        calculator.operators.append("x")
         calculator.stringNumbers.append("")
         addString("4")
-        XCTAssert(calculator.calculateTotal() == -1)
+        XCTAssert(calculator.calculateTotal() == 12)
     }
     
     func testGivenClearCalcul_WhenCalculIsEnded_StringIsEmpty(){
