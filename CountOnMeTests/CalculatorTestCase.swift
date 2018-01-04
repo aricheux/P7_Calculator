@@ -40,15 +40,30 @@ class CalculatorTestCase: XCTestCase {
         
         XCTAssert(calculator.stringNumbers[calculator.stringNumbers.count-1] != initialString)
         XCTAssert(String(lastCharac) == String(newNumber))
-
     }
     
-    func testGivenCalculRequest_WhenEqualIsPush_StringContainCalculationTotal() {
+    func testGivenMinus_WhenEqualIsPush_StringContainCalculationTotal() {
+        addString("3")
+        calculator.operators.append("-")
+        calculator.stringNumbers.append("")
+        addString("4")
+        XCTAssert(calculator.calculateTotal() == -1)
+    }
+    
+    func testGivenMultply_WhenEqualIsPush_StringContainCalculationTotal() {
         addString("3")
         calculator.operators.append("x")
         calculator.stringNumbers.append("")
         addString("4")
         XCTAssert(calculator.calculateTotal() == 12)
+    }
+    
+    func testGivenPlus_WhenEqualIsPush_StringContainCalculationTotal() {
+        addString("3")
+        calculator.operators.append("+")
+        calculator.stringNumbers.append("")
+        addString("4")
+        XCTAssert(calculator.calculateTotal() == 7)
     }
     
     func testGivenClearCalcul_WhenCalculIsEnded_StringIsEmpty(){

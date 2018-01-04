@@ -56,10 +56,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func equal() {
-        if isExpressionCorrect(){
+        if calculator.isExpressionCorrect(){
             let total = calculator.calculateTotal()
             textView.text = textView.text + "=\(total)"
             calculator.clear()
+        } else {
+            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
         }
     }
     
@@ -67,28 +71,10 @@ class ViewController: UIViewController {
         calculator.clear()
         updateDisplay()
     }
-    
-    func isExpressionCorrect() -> Bool {
-        if let stringNumber = calculator.stringNumbers.last {
-            if stringNumber.isEmpty {
-                if calculator.stringNumbers.count == 1 {
-                    let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alertVC, animated: true, completion: nil)
-                } else {
-                    let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alertVC, animated: true, completion: nil)
-                }
-                return false
-            }
-        }
-        return true
-    }
 
     func updateDisplay() {
         var text = ""
-        for (i, stringNumber) in calculator.stringNumbers.enumerated() {
+        for (i, stringNumber) in calculator.enumeratedString() {
             // Add operator
             if i > 0 {
                 text += calculator.operators[i]

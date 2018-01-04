@@ -11,8 +11,8 @@ import UIKit
 
 class Calculator {
     // MARK: - Properties
-    public var stringNumbers: [String] = [String()]
-    public var operators: [String] = ["+"]
+    var stringNumbers: [String] = [String()]
+    var operators: [String] = ["+"]
     
     // MARK: - Methods
     func addNewNumber(_ newNumber: Int) {
@@ -29,8 +29,19 @@ class Calculator {
                 return false
             }
         }
+        
         operators.append(newOperator)
         stringNumbers.append("")
+        
+        return true
+    }
+    
+    func isExpressionCorrect() -> Bool {
+        if let stringNumber = stringNumbers.last {
+            if stringNumber.isEmpty {
+                return false
+            }
+        }
         return true
     }
     
@@ -48,6 +59,10 @@ class Calculator {
             }
         }
         return total
+    }
+    
+    func enumeratedString() -> EnumeratedSequence<[String]> {
+        return stringNumbers.enumerated()
     }
 
     func clear() {
