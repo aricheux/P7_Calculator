@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
     @IBAction func plus() {
         if calculator.canAddOperator {
-        	calculator.operators.append("+")
+            calculator.operators.append("+")
         	calculator.stringNumbers.append("")
             updateDisplay()
         } else {
