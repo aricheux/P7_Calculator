@@ -14,15 +14,6 @@ class Calculator {
     public var stringNumbers: [String] = [String()]
     public var operators: [String] = ["+"]
     
-    var canAddOperator: Bool {
-        if let stringNumber = stringNumbers.last {
-            if stringNumber.isEmpty {
-                return false
-            }
-        }
-        return true
-    }
-    
     // MARK: - Methods
     func addNewNumber(_ newNumber: Int) {
         if let stringNumber = stringNumbers.last {
@@ -30,6 +21,17 @@ class Calculator {
             stringNumberMutable += "\(newNumber)"
             stringNumbers[stringNumbers.count-1] = stringNumberMutable
         }
+    }
+    
+    func checkAndAddOperator(_ newOperator: String) -> Bool {
+        if let stringNumber = stringNumbers.last {
+            if stringNumber.isEmpty {
+                return false
+            }
+        }
+        operators.append(newOperator)
+        stringNumbers.append("")
+        return true
     }
     
     func calculateTotal() -> Int {

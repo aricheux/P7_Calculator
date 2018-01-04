@@ -23,12 +23,12 @@ class CalculatorTestCase: XCTestCase {
     
     func testGivenNumberIsEmpty_WhenAddOperator_ReturnFalse() {
         addString("")
-        XCTAssert(calculator.canAddOperator == false)
+        XCTAssert(calculator.checkAndAddOperator("+") == false)
     }
     
     func testGivenNumberiIsPresent_WhenAddOperator_ReturnTrue() {
         addString("32")
-        XCTAssert(calculator.canAddOperator == true)
+        XCTAssert(calculator.checkAndAddOperator("+") == true)
     }
     
     func testGivenNewNumberIsPush_WhenNumberIsAddToString_StringContainNewNumberAtTheEndd() {

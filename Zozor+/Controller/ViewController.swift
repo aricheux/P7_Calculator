@@ -26,9 +26,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func plus() {
-        if calculator.canAddOperator {
-            calculator.operators.append("+")
-        	calculator.stringNumbers.append("")
+        if calculator.checkAndAddOperator("+") {
             updateDisplay()
         } else {
             incorrectExpression()
@@ -36,9 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func minus() {
-        if calculator.canAddOperator {
-            calculator.operators.append("-")
-            calculator.stringNumbers.append("")
+        if calculator.checkAndAddOperator("-") {
             updateDisplay()
         } else {
             incorrectExpression()
@@ -46,9 +42,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func multply() {
-        if calculator.canAddOperator {
-            calculator.operators.append("x")
-            calculator.stringNumbers.append("")
+        if calculator.checkAndAddOperator("x") {
             updateDisplay()
         } else {
             incorrectExpression()
