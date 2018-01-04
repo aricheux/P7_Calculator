@@ -69,6 +69,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func clear() {
+        calculator.clear()
+        updateDisplay()
+    }
+    
     func isExpressionCorrect() -> Bool {
         if let stringNumber = calculator.stringNumbers.last {
             if stringNumber.isEmpty {
