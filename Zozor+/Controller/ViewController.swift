@@ -45,6 +45,16 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func multply() {
+        if calculator.canAddOperator {
+            calculator.operators.append("x")
+            calculator.stringNumbers.append("")
+            updateDisplay()
+        } else {
+            incorrectExpression()
+        }
+    }
+    
     func incorrectExpression() {
         let alertVC = UIAlertController(title: "Zéro!", message: "Expression incorrecte !", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
