@@ -21,6 +21,12 @@ class CalculatorTestCase: XCTestCase {
         calculator.stringNumbers[calculator.stringNumbers.count-1] += newString
     }
     
+    func addCalcul(_ firstNumber: Int, _ operat: String, _ secondNumber: Int){
+        addString(String(firstNumber))
+        calculator.checkAndAddOperator(operat)
+        addString(String(secondNumber))
+    }
+    
     func testGivenNumberIsEmpty_WhenAddOperator_ReturnFalse() {
         addString("")
         XCTAssert(calculator.checkAndAddOperator("+") == false)
@@ -43,26 +49,27 @@ class CalculatorTestCase: XCTestCase {
     }
     
     func testGivenMinus_WhenEqualIsPush_StringContainCalculationTotal() {
-        addString("3")
-        calculator.operators.append("-")
-        calculator.stringNumbers.append("")
-        addString("4")
+        addCalcul(3,"-",4)
         XCTAssert(calculator.calculateTotal() == -1)
     }
     
     func testGivenMultply_WhenEqualIsPush_StringContainCalculationTotal() {
-        addString("3")
-        calculator.operators.append("x")
-        calculator.stringNumbers.append("")
-        addString("4")
+        addCalcul(3,"x",4)
         XCTAssert(calculator.calculateTotal() == 12)
     }
     
     func testGivenPlus_WhenEqualIsPush_StringContainCalculationTotal() {
-        addString("3")
-        calculator.operators.append("+")
-        calculator.stringNumbers.append("")
-        addString("4")
+        addCalcul(3,"+",4)
+        XCTAssert(calculator.calculateTotal() == 7)
+    }
+    
+    func testGivenMultipleCalcul_WhenEqualIsPush_StringContainCalculationTotal() {
+        addCalcul(3,"-",4)
+        calculator.checkAndAddOperator("x")
+        addCalcul(3,"+",4)
+        calculator.checkAndAddOperator("x")
+        addCalcul(3,"+",4)
+
         XCTAssert(calculator.calculateTotal() == 7)
     }
     

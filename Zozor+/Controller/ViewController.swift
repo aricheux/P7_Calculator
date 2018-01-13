@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func multply() {
+    @IBAction func multiply() {
         if calculator.checkAndAddOperator("x") {
             updateDisplay()
         } else {

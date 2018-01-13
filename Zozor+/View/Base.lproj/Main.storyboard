@@ -208,7 +208,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="multply" destination="BYZ-38-t0r" eventType="touchUpInside" id="bD2-kj-UCn"/>
+                                            <action selector="multiply" destination="BYZ-38-t0r" eventType="touchUpInside" id="mmN-SF-YcN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9e-qZ-ZAT">

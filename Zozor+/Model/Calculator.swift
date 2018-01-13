@@ -19,7 +19,7 @@ class Calculator {
         if let stringNumber = stringNumbers.last {
             var stringNumberMutable = stringNumber
             stringNumberMutable += "\(newNumber)"
-            stringNumbers[stringNumbers.count-1] = stringNumberMutable
+            stringNumbers[stringNumbers.count - 1] = stringNumberMutable
         }
     }
     
@@ -46,6 +46,7 @@ class Calculator {
     }
     
     func calculateTotal() -> Int {
+        searchMultiplication()
         var total = 0
         for (i, stringNumber) in stringNumbers.enumerated() {
             if let number = Int(stringNumber) {
@@ -53,12 +54,24 @@ class Calculator {
                     total += number
                 } else if operators[i] == "-" {
                     total -= number
-                } else if operators[i] == "x" {
-                    total *= number
                 }
             }
         }
         return total
+    }
+    
+    func searchMultiplication() {
+        var i = 0
+        while i < operators.count {
+            if operators[i] == "x" {
+                if let firstNumber = Int(stringNumbers[i - 1]), let secondNumber = Int(stringNumbers[i]) {
+                    stringNumbers[i - 1] = String(firstNumber * secondNumber)
+                    stringNumbers.remove(at: i)
+                }
+                operators.remove(at: i)
+            }
+            i += 1
+        }
     }
     
     func enumeratedString() -> EnumeratedSequence<[String]> {
