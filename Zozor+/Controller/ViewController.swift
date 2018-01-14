@@ -9,13 +9,20 @@
 import Foundation
 import UIKit
 
+/// Class to handle the main view
 class ViewController: UIViewController {
-    // MARK: - Outlets
+    /// a text view who contains all calcul
     @IBOutlet weak var textView: UITextView!
+    
+    /// a uibutton collection's who contains all number of the calculator
     @IBOutlet var numberButtons: [UIButton]!
+    
+    /// Create a calculator
     let calculator = Calculator()
 
-    // MARK: - Action
+    
+    /// Add the number to the current calcul when it's pressed
+    /// Update the text view
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         for (i, numberButton) in numberButtons.enumerated() {
             if sender == numberButton {
@@ -25,38 +32,47 @@ class ViewController: UIViewController {
         }
     }
 
+    /// Check if possible and add a plus operator when it's pressed
     @IBAction func plus() {
-        if calculator.checkAndAddOperator("+") {
+        if calculator.isExpressionCorrect() {
+            calculator.addOperator("+")
             updateDisplay()
         } else {
             incorrectExpression()
         }
     }
 
+    /// Check if possible and add a minus operator when it's pressed
     @IBAction func minus() {
-        if calculator.checkAndAddOperator("-") {
+        if calculator.isExpressionCorrect() {
+            calculator.addOperator("-")
             updateDisplay()
         } else {
             incorrectExpression()
         }
     }
     
+    /// Check if possible and add a multiply operator when it's pressed
     @IBAction func multiply() {
-        if calculator.checkAndAddOperator("x") {
+        if calculator.isExpressionCorrect() {
+            calculator.addOperator("x")
             updateDisplay()
         } else {
             incorrectExpression()
         }
     }
     
+    /// Show an error message if there are an incorrect expression
     func incorrectExpression() {
         let alertVC = UIAlertController(title: "Zéro!", message: "Expression incorrecte !", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
 
+    /// Calculate the total when the equal button is pressed
+    /// Show an error message if there are an incorrect expression
     @IBAction func equal() {
-        if calculator.isExpressionCorrect(){
+        if calculator.isExpressionCorrect() {
             let total = calculator.calculateTotal()
             textView.text = textView.text + "=\(total)"
             calculator.clear()
@@ -67,11 +83,13 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Reset the current calcul and update the text view
     @IBAction func clear() {
         calculator.clear()
         updateDisplay()
     }
 
+    /// Update the text view with new number and new operator
     func updateDisplay() {
         var text = ""
         for (i, stringNumber) in calculator.enumeratedString() {

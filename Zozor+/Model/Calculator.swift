@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
+// Class to handle the calculator
 class Calculator {
-    // MARK: - Properties
+    /// String who contains all number pressed
     var stringNumbers: [String] = [String()]
+    
+    /// String who contains all operator pressed
     var operators: [String] = ["+"]
     
-    // MARK: - Methods
-    func addNewNumber(_ newNumber: Int) {
+    /// Add the new number to the current calcul
+    /// - Parameter newNumber: Number pressed from the view
+    public func addNewNumber(_ newNumber: Int) {
         if let stringNumber = stringNumbers.last {
             var stringNumberMutable = stringNumber
             stringNumberMutable += "\(newNumber)"
@@ -23,20 +27,16 @@ class Calculator {
         }
     }
     
-    func checkAndAddOperator(_ newOperator: String) -> Bool {
-        if let stringNumber = stringNumbers.last {
-            if stringNumber.isEmpty {
-                return false
-            }
-        }
-        
+    /// Add a new operator to the current calcul
+    /// - Parameter newOperator: Operator pressed from the view
+    public func addOperator(_ newOperator: String) {
         operators.append(newOperator)
         stringNumbers.append("")
-        
-        return true
     }
-    
-    func isExpressionCorrect() -> Bool {
+
+    /// To add a new operator it is necessary to have a number before
+    /// - Returns: return true if it's possible to add the new operator
+    public func isExpressionCorrect() -> Bool {
         if let stringNumber = stringNumbers.last {
             if stringNumber.isEmpty {
                 return false
@@ -45,8 +45,12 @@ class Calculator {
         return true
     }
     
-    func calculateTotal() -> Int {
-        searchMultiplication()
+    /// First check if there are priority calcul
+    /// Then calcul the result according to the operator sign
+    /// - Returns: return the final calcul
+    public func calculateTotal() -> Int {
+        checkCalculPriority()
+        
         var total = 0
         for (i, stringNumber) in stringNumbers.enumerated() {
             if let number = Int(stringNumber) {
@@ -60,7 +64,8 @@ class Calculator {
         return total
     }
     
-    func searchMultiplication() {
+    /// Check if there are an operator needed priority and do the calcul
+    private func checkCalculPriority() {
         var i = 0
         while i < operators.count {
             if operators[i] == "x" {
@@ -74,11 +79,14 @@ class Calculator {
         }
     }
     
-    func enumeratedString() -> EnumeratedSequence<[String]> {
+    /// Enumerate the current string calcul
+    /// - Returns: current string calcul formated in enumerated sequence
+    public func enumeratedString() -> EnumeratedSequence<[String]> {
         return stringNumbers.enumerated()
     }
 
-    func clear() {
+    /// Delete all entries and initialize the operator string
+    public func clear() {
         stringNumbers = [String()]
         operators = ["+"]
     }

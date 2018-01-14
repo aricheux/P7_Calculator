@@ -23,8 +23,9 @@ class CalculatorTestCase: XCTestCase {
     
     func addCalcul(_ firstNumber: Int, _ operat: String, _ secondNumber: Int){
         addString(String(firstNumber))
-        calculator.checkAndAddOperator(operat)
-        addString(String(secondNumber))
+        if calculator.checkAndAddOperator(operat) {
+            addString(String(secondNumber))
+        }
     }
     
     func testGivenNumberIsEmpty_WhenAddOperator_ReturnFalse() {
@@ -65,11 +66,13 @@ class CalculatorTestCase: XCTestCase {
     
     func testGivenMultipleCalcul_WhenEqualIsPush_StringContainCalculationTotal() {
         addCalcul(3,"-",4)
-        calculator.checkAndAddOperator("x")
-        addCalcul(3,"+",4)
-        calculator.checkAndAddOperator("x")
-        addCalcul(3,"+",4)
-
+        if calculator.checkAndAddOperator("x") {
+            addCalcul(3,"+",4)
+            if calculator.checkAndAddOperator("x") {
+                addCalcul(3,"+",4)
+            }
+        }
+        
         XCTAssert(calculator.calculateTotal() == 7)
     }
     
