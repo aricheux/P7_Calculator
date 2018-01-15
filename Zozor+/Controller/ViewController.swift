@@ -93,11 +93,9 @@ class ViewController: UIViewController {
     func updateDisplay() {
         var text = ""
         for (i, stringNumber) in calculator.stringNumbers.enumerated() {
-            // Add operator
             if i > 0 {
                 text += calculator.operators[i]
             }
-            // Add number
             text += stringNumber
         }
         textView.text = text
