@@ -50,7 +50,6 @@ class Calculator {
     /// - Returns: return the final calcul
     public func calculateTotal() -> Int {
         checkCalculPriority()
-        
         var total = 0
         for (i, stringNumber) in stringNumbers.enumerated() {
             if let number = Int(stringNumber) {
@@ -66,25 +65,19 @@ class Calculator {
     
     /// Check if there are an operator needed priority and do the calcul
     private func checkCalculPriority() {
-        var i = 0
-        while i < operators.count {
+        var i = operators.count - 1
+        while i > 0 {
             if operators[i] == "x" {
-                if let firstNumber = Int(stringNumbers[i - 1]), let secondNumber = Int(stringNumbers[i]) {
+                if let firstNumber = Int(stringNumbers[i]), let secondNumber = Int(stringNumbers[i - 1]) {
                     stringNumbers[i - 1] = String(firstNumber * secondNumber)
                     stringNumbers.remove(at: i)
                 }
                 operators.remove(at: i)
             }
-            i += 1
+            i -= 1
         }
     }
     
-    /// Enumerate the current string calcul
-    /// - Returns: current string calcul formated in enumerated sequence
-    public func enumeratedString() -> EnumeratedSequence<[String]> {
-        return stringNumbers.enumerated()
-    }
-
     /// Delete all entries and initialize the operator string
     public func clear() {
         stringNumbers = [String()]

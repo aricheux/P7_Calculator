@@ -23,19 +23,18 @@ class CalculatorTestCase: XCTestCase {
     
     func addCalcul(_ firstNumber: Int, _ operat: String, _ secondNumber: Int){
         addString(String(firstNumber))
-        if calculator.checkAndAddOperator(operat) {
-            addString(String(secondNumber))
-        }
+        calculator.addOperator(operat)
+        addString(String(secondNumber))
     }
     
     func testGivenNumberIsEmpty_WhenAddOperator_ReturnFalse() {
         addString("")
-        XCTAssert(calculator.checkAndAddOperator("+") == false)
+        XCTAssert(calculator.isExpressionCorrect() == false)
     }
     
     func testGivenNumberiIsPresent_WhenAddOperator_ReturnTrue() {
         addString("32")
-        XCTAssert(calculator.checkAndAddOperator("+") == true)
+        XCTAssert(calculator.isExpressionCorrect() == true)
     }
     
     func testGivenNewNumberIsPush_WhenNumberIsAddToString_StringContainNewNumberAtTheEndd() {
@@ -66,14 +65,14 @@ class CalculatorTestCase: XCTestCase {
     
     func testGivenMultipleCalcul_WhenEqualIsPush_StringContainCalculationTotal() {
         addCalcul(3,"-",4)
-        if calculator.checkAndAddOperator("x") {
-            addCalcul(3,"+",4)
-            if calculator.checkAndAddOperator("x") {
-                addCalcul(3,"+",4)
-            }
-        }
+        calculator.addOperator("x")
+        addCalcul(3,"+",4)
+        calculator.addOperator("x")
+        addString("3")
+        calculator.addOperator("x")
+        addCalcul(3,"+",4)
         
-        XCTAssert(calculator.calculateTotal() == 7)
+        XCTAssert(calculator.calculateTotal() == 31)
     }
     
     func testGivenClearCalcul_WhenCalculIsEnded_StringIsEmpty(){
