@@ -74,8 +74,6 @@ class CountOnMeUITests: XCTestCase {
         app.buttons["5"].tap()
         button2.tap()
         app.buttons["6"].tap()
-        xButton.tap()
-        app.buttons["5"].tap()
         button3.tap()
     }
     
