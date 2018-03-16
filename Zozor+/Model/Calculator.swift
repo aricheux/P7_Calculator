@@ -66,8 +66,8 @@ class Calculator {
     
     /// Check if there are an operator needed priority and do the calcul
     private func checkCalculPriority() {
-        var i = 0
-        while i < operators.count {
+        var i = operators.count - 1
+        while i > 0 {
             if operators[i] == "x" {
                 if let firstNumber = Int(stringNumbers[i - 1]), let secondNumber = Int(stringNumbers[i]) {
                     stringNumbers[i - 1] = String(firstNumber * secondNumber)
@@ -75,14 +75,8 @@ class Calculator {
                 }
                 operators.remove(at: i)
             }
-            i += 1
+            i -= 1
         }
-    }
-    
-    /// Enumerate the current string calcul
-    /// - Returns: current string calcul formated in enumerated sequence
-    public func enumeratedString() -> EnumeratedSequence<[String]> {
-        return stringNumbers.enumerated()
     }
 
     /// Delete all entries and initialize the operator string
