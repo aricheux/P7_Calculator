@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     
     /// Create a calculator
     let calculator = Calculator()
-
     
     /// Add the number to the current calcul when it's pressed
     /// Update the text view
@@ -64,7 +63,7 @@ class ViewController: UIViewController {
     
     /// Show an error message if there are an incorrect expression
     func incorrectExpression() {
-        let alertVC = UIAlertController(title: "Zéro!", message: "Expression incorrecte !", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Erreur", message: "Veuillez d'abord entrer un chiffre", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -77,7 +76,7 @@ class ViewController: UIViewController {
             textView.text = textView.text + "=\(total)"
             calculator.clear()
         } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "Erreur", message: "Le calcul n'est pas correct", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         }

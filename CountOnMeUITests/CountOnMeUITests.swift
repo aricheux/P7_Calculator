@@ -34,7 +34,7 @@ class CountOnMeUITests: XCTestCase {
         let button = app.buttons["+"]
         button.tap()
         
-        let okButton = app.alerts["Zéro!"].buttons["OK"]
+        let okButton = app.alerts["Erreur"].buttons["OK"]
         okButton.tap()
         
         let button2 = app.buttons["-"]
